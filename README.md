@@ -10,7 +10,7 @@
 ## 使い方
 - メモの新規作成ボタンで、メモを新規に作成します。
 - 保存ボタンで、メモ内容を保存します。
-- メモは、`memo_app/data.json`ファイルに保存されます。
+- メモは、`data.json`ファイルに保存されます。
 - 作成したメモは、トップページのメモリストにメモのタイトルが一覧で表示されます。
 - メモリストのタイトルをクリックすると、メモの内容が確認できます。
 - 変更ボタンを押すと、メモ内容を変更できます。変更するボタンで、上書き保存します。
@@ -25,11 +25,11 @@
 
 - フォークしたリポジトリをリモートリポジトリにクローンする。
 ```
-`git clone git@github.com:yuki-29/sinatra-memo-app.git
+git clone git@github.com:yuki-29/sinatra-memo-app.git
 ```
 - クローンされたディレクトリに移動
 ```
-$ cd memo_app
+$ cd sinatra-memo-app
 ```
 - Bundle installしたときのインストール先を設定
 ```
@@ -59,7 +59,6 @@ $ bundle exec ruby memo.rb
 ```
 http://localhost:4567
 ```
-
 
 ## ライセンス
 このリポジトリは学習目的で作成したものです。
