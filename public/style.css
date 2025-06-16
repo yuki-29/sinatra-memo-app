@@ -1,0 +1,86 @@
+.top-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 25px 30px;
+    background-color: #ffffff;
+    border-radius: 0.6rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.section-lists {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 50px;
+}
+
+.section-lists li {
+    text-align: left;
+    margin-left: 100px;
+}
+
+.btn,
+button.btn {
+    font-size: 1.0rem;
+    font-weight: 100;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    color: #212529;
+    border-radius: 0.5rem;
+}
+
+form {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.memo-content form input,
+.memo-content form textarea,
+.memo-content form input[type="submit"] {
+    display: block;
+    margin-bottom: 20px;
+    margin-right: auto;
+    margin-left: auto
+}
+
+.text-title {
+    width: 500px;
+}
+
+textarea {
+    width: 500px;
+}
+
+.del-btn,
+.change-btn {
+    display: inline;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Noto Sans JP', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+a[href='/'] {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

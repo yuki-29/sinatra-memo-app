@@ -1,0 +1,10 @@
+<input class="btn" type="submit" onclick="location.href='/new'" value="メモを新規作成">
+
+<section class="section-lists">
+  <h2>メモリスト</h2>
+  <ol>
+    <% @memo_data.each do |key, value| %>
+      <li><a href="<%= '/show/' + key %>"><%= h(value['title']) %></a></li>
+    <% end %>
+  </ol>
+</section>
