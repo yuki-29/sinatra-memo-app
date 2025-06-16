@@ -39,22 +39,18 @@ $ bundle config set path ‘vendor/bundle’
 ```
 $ gem install bundler
 ```
-
 - インストールしたbundlerを使用可能な状態にする
 ```
 $ rbenv rehash
 ```
-
 - Gemfileの内容に従って、gemをインストール
 ```
 $ bundle install
 ```
-
 - Ruby上でWEBサーバーを起動
 ```
 $ bundle exec ruby memo.rb
 ```
-
 - Webブラウザで下記URLにアクセス
 ```
 http://localhost:4567
