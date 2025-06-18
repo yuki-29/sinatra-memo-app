@@ -2,7 +2,7 @@
 <section class="memo-display">
   <p>タイトル：<%= h(@title) %><br></p>
   <p>内容</p>
-  <textarea disabled cols="50" rows="20"> <%= h(@memo_content) %></textarea>
+  <textarea disabled cols="50" rows="20"><%= h(@memo_content) %></textarea>
 </section>
 
 <form method="post" action="/del/<%= @id %>">
