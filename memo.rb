@@ -7,26 +7,30 @@ require 'json'
 set :environment, :production
 
 def file_open
-  File.open('data.json') do |file|
-    @memo_data = JSON.parse(file.read)
+  File.open('memos.json') do |file|
+    @memos = JSON.parse(file.read, symbolize_names: true)
   end
 end
 
-def memo_data_output
-  @memo_data.each do |key, value|
-    next unless params[:id] == key
-
-    @id = key
-    @title = value['title']
-    @memo_content = value['memo_content']
+def set_current_memo
+  @current_memo = @memos.find do |memo|
+    memo[:id] == params[:id].to_i
   end
 end
 
 def write_json(id, title, memo_content)
   title = title.empty? ? 'No-title' : title
-  File.open('data.json', 'w') do |file|
-    @memo_data[id] = { 'title' => title, 'memo_content' => memo_content }
-    JSON.dump(@memo_data, file)
+  @memos << { id: id.to_i, title: title, memo_content: memo_content }
+  save_memos_to_file
+end
+
+def find_memo_index(id)
+  @memos.index { |value| value[:id] == id.to_i }
+end
+
+def save_memos_to_file
+  File.open('memos.json', 'w') do |file|
+    JSON.dump(@memos, file)
   end
 end
 
@@ -44,52 +48,41 @@ get '/' do
   erb :index
 end
 
-get '/show/:id' do
-  memo_data_output
+get '/memos/new' do
+  erb :new_memo
+end
+
+get '/memos/:id' do
+  set_current_memo
   erb :show_memo
 end
 
-get '/new' do
-  erb :new_memo
-end
-
-post '/save' do
-  hash_size = @memo_data.size
-  memo_list_ids = []
-
-  if hash_size.zero?
-    id = 1
-    write_json(id, params[:memo_title], params[:memo_content])
-  else
-    @memo_data.each do |i|
-      memo_list_ids << i[0].to_i
-    end
-    write_json(memo_list_ids.max + 1, params[:memo_title], params[:memo_content])
-  end
-
+post '/memos' do
+  hash_size = @memos.size
+  id = hash_size.zero? ? 1 : @memos.map { |value| value[:id].to_i }.max + 1
+  write_json(id, params[:memo_title], params[:memo_content])
   erb :new_memo
   redirect '/'
 end
 
-delete '/del/:id' do
-  File.open('data.json', 'w') do |file|
-    @memo_data.delete(params[:id])
-    JSON.dump(@memo_data, file)
-  end
+delete '/memos/:id' do
+  delete_index = find_memo_index(params[:id])
+  @memos.delete_at delete_index if delete_index
+  save_memos_to_file
   redirect '/'
 end
 
-get '/edit/:id' do
-  memo_data_output
+get '/memos/:id/edit' do
+  set_current_memo
   erb :edit_memo
 end
 
-patch '/save/:id' do
-  @memo_data.each do |key|
-    next unless params[:id] == key[0]
-
-    write_json(params[:id], params[:memo_title], params[:memo_content])
+patch '/memos/:id' do
+  update_index = find_memo_index(params[:id])
+  if update_index
+    @memos[update_index][:title] = params[:title]
+    @memos[update_index][:memo_content] = params[:memo_content]
+    save_memos_to_file
     redirect '/'
-    break
   end
 end
