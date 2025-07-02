@@ -1,0 +1,17 @@
+<h2>メモ表示</h2>
+<section class="memo-display">
+  <p>タイトル：<%= h(@current_memo[:title]) %><br></p>
+  <p>内容</p>
+  <textarea disabled cols="50" rows="20"><%= h(@current_memo[:memo_content]) %></textarea>
+</section>
+
+<form method="post" action="/memos/<%= @current_memo[:id] %>">
+  <input class="del-btn" type="submit" value="削除">
+  <input type="hidden" name="_method" value="delete">
+</form>
+
+<form method="get" action="/memos/<%= @current_memo[:id] %>/edit">
+  <input class="change-btn" type="submit" value="変更">
+</form>
+
+<a href='/'>トップへ戻る</a>

@@ -1,0 +1,11 @@
+<input class="btn" type="submit" onclick="location.href='/memos/new'" value="メモを新規作成">
+
+<section class="section-lists">
+  <h2>メモリスト</h2>
+  <ol>
+    <% @memos.each do |value| %>
+      <li><a href="<%= '/memos/' + value[:id].to_s %>"><%= h(value[:title]) %></a></li>
+    <% end %>
+  </ol>
+
+</section>
