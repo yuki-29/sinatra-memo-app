@@ -14,6 +14,7 @@ end
 
 def find_memo(id)
   selected_memo = settings.db.exec_params('SELECT * FROM memos WHERE id = $1', [id])
+  halt '指定のidが見つかりません。' if selected_memo.ntuples.zero?
   @current_memo = selected_memo[0].transform_keys!(&:to_sym)
 end
 
@@ -56,7 +57,7 @@ get '/memos/:id' do
 end
 
 post '/memos' do
-  save_memo(params[:memo_title], params[:memo_content])
+  save_memo(params[:title], params[:content])
   redirect '/'
 end
 
@@ -71,6 +72,6 @@ get '/memos/:id/edit' do
 end
 
 patch '/memos/:id' do
-  update_memo(params[:id], params[:title], params[:memo_content])
+  update_memo(params[:id], params[:title], params[:content])
   redirect '/'
 end
