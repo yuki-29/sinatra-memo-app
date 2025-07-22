@@ -14,7 +14,7 @@ end
 
 def find_memo(id)
   selected_memo = settings.db.exec_params('SELECT * FROM memos WHERE id = $1', [id])
-  halt '指定のidが見つかりません。' if selected_memo.ntuples.zero?
+  halt 404, '指定のidが見つかりません。' if selected_memo.ntuples.zero?
   @current_memo = selected_memo[0].transform_keys!(&:to_sym)
 end
 
