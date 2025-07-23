@@ -2,7 +2,7 @@
 <section class="memo-display">
   <p>タイトル：<%= h(@current_memo[:title]) %><br></p>
   <p>内容</p>
-  <textarea disabled cols="50" rows="20"><%= h(@current_memo[:memo_content]) %></textarea>
+  <textarea disabled cols="50" rows="20"><%= h(@current_memo[:content]) %></textarea>
 </section>
 
 <form method="post" action="/memos/<%= @current_memo[:id] %>">
